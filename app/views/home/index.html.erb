@@ -9,6 +9,14 @@
     <h4><%= current_user.location %></h4>
   </div>
 
+  <div class="education-info">
+    <h3>Education</h3>
+    <% current_user.degrees.each do |degree| %>
+      <h4><%= degree.school.name %></h4>
+      <h4><%= degree.title %> <%= degree.specialty.name %></h4>
+    <% end %>
+  </div>
+
 <% else %>
   <h1>Welcome!</h1>
 <% end %>
