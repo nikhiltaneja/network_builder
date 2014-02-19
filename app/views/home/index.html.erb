@@ -11,12 +11,22 @@
 
   <div class="education-info">
     <h3>Education</h3>
-    <% current_user.degrees.each do |degree| %>
-      <h4><%= degree.school.name %></h4>
-      <h4><%= degree.title %> <%= degree.specialty.name %></h4>
-    <% end %>
+    <ul>
+      <% current_user.degrees.each do |degree| %>
+        <li><%= degree.school.name %></li>
+        <ul>
+          <li><%= degree.title %> <%= degree.specialty.name %></li>
+        </ul>
+      <% end %>
+    </ul>
   </div>
 
+  <div class="work-experience">
+    <h3>Work Experience</h3>
+  </div>
+
+
+
 <% else %>
-  <h1>Welcome!</h1>
+  <h2>Welcome!</h2>
 <% end %>
