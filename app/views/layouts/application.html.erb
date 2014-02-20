@@ -21,14 +21,14 @@
 
   <%= image_tag 'networkbuilder_logo.png', size: '200x75' %>
 
-  <div class="container">
+  <% if current_user %>
+    Signed in as <%= current_user.first_name %>!
+    <%= link_to "Sign out", signout_path %>
+  <% else %>
+    <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg" %>
+  <% end %>
 
-    <% if current_user %>
-      Signed in as <%= current_user.first_name %>!
-      <%= link_to "Sign out", signout_path %>
-    <% else %>
-      <%= link_to "Sign in with LinkedIn", "/auth/linkedin" %>
-    <% end %>
+  <div class="container">
 
     <%= yield %>
 
