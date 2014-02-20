@@ -22,13 +22,15 @@ class User < ActiveRecord::Base
     end
 
     educations = auth["extra"]["raw_info"]["educations"]["values"]
-    jobs = auth["extra"]["raw_info"]["threePastPositions"]["values"]
-    add_degree(educations, user.id)
-    add_job(jobs, user.id)
+    current_jobs = auth["extra"]["raw_info"]["threeCurrentPositions"]["values"]
+    past_jobs = auth["extra"]["raw_info"]["threePastPositions"]["values"]
+    add_degrees(educations, user.id)
+    add_current_jobs(current_jobs, user.id)
+    add_past_jobs(past_jobs, user.id)
     user
   end
 
-  def self.add_degree(educations, user_id)
+  def self.add_degrees(educations, user_id)
     educations.each do |education|
       specialty = Specialty.find_or_create_by(name: education.fieldOfStudy)
       school = School.find_or_create_by(name: education.schoolName)
@@ -36,8 +38,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.add_job(jobs, user_id)
-    jobs.each do |job|
+  def self.add_current_jobs(current_jobs, user_id)
+    current_jobs.each do |job|
+      company = Company.find_or_create_by(name: job["company"].name)
+      position = Position.find_or_create_by(name: job["title"])
+      Job.create(user_id: user_id, company_id: company.id, position_id: position.id)
+    end
+  end
+
+  def self.add_past_jobs(past_jobs, user_id)
+    past_jobs.each do |job|
       company = Company.find_or_create_by(name: job["company"].name)
       position = Position.find_or_create_by(name: job["title"])
       Job.create(user_id: user_id, company_id: company.id, position_id: position.id)
