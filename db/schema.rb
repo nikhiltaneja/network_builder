@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220181637) do
+ActiveRecord::Schema.define(version: 20140220190044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "degrees", force: true do |t|
     t.string   "title"
@@ -28,6 +34,24 @@ ActiveRecord::Schema.define(version: 20140220181637) do
   add_index "degrees", ["school_id"], name: "index_degrees_on_school_id", using: :btree
   add_index "degrees", ["specialty_id"], name: "index_degrees_on_specialty_id", using: :btree
   add_index "degrees", ["user_id"], name: "index_degrees_on_user_id", using: :btree
+
+  create_table "jobs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "position_id"
+  end
+
+  add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
+  add_index "jobs", ["position_id"], name: "index_jobs_on_position_id", using: :btree
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
+
+  create_table "positions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "name"

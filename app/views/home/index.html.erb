@@ -14,7 +14,7 @@
 
     <div class="summary">
       <h3>Summary</h3>
-      <h4><%= current_user.summary %></h4>
+      <p><%= current_user.summary %></p>
     </div>
 
   <% end %>
@@ -25,6 +25,11 @@
 
   <div class="work-experience">
     <h3>Work Experience</h3>
+    <ul>
+      <% current_user.jobs.each do |job| %>
+        <li><%= job.company.name %>, <%= job.position.name %> </li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="education-info">
