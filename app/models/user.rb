@@ -13,10 +13,11 @@ class User < ActiveRecord::Base
       user.last_name = auth["info"]["last_name"]
       user.email = auth["info"]["email"]
       user.headline = auth["info"]["headline"]
+      user.summary = auth["extra"]["raw_info"]["summary"]
       user.industry = auth["info"]["industry"]
       user.location = auth["info"]["location"]
       user.image = auth["info"]["image"]
-      user.public_profile = auth["info"]["public_profile"]
+      user.public_profile = auth["info"]["urls"]["public_profile"]
     end
 
     educations = auth["extra"]["raw_info"]["educations"]["values"]
