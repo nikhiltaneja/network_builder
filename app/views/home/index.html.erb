@@ -10,10 +10,14 @@
     <h4><%= link_to "LinkedIn Profile", current_user.public_profile %></h4>
   </div>
 
-  <div class="summary">
-    <h3>Summary</h3>
-    <h4><%= current_user.summary %></h4>
-  </div>
+  <% if current_user.summary %>
+
+    <div class="summary">
+      <h3>Summary</h3>
+      <h4><%= current_user.summary %></h4>
+    </div>
+
+  <% end %>
 
   <div>
     <h3>Discussion Topics</h3>
