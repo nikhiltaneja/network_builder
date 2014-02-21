@@ -1,5 +1,27 @@
-<div class="profile-picture">
-  <%= image_tag @user.image, size: "150x150" %>
+<div class="row">
+  <div class="col-xs-1">
+    <div class="arrow-left">
+      <% unless @user.id == 1 %>
+        <%= link_to user_path(@user.id - 1) do %>
+          <i class="glyphicon glyphicon-chevron-left"></i>
+        <% end %>  
+      <% end %>
+    </div>
+  </div>
+
+  <div class="profile-picture col-xs-2">
+    <%= image_tag @user.image, size: "150x150" %>
+  </div>
+
+  <div class="col-xs-1">
+    <div class="arrow-right">
+      <% unless @user.id == User.all.count %>
+        <%= link_to user_path(@user.id + 1) do%>
+          <i class="glyphicon glyphicon-chevron-right" size="150x150"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="main-info">
@@ -14,19 +36,3 @@
 <%= validate_jobs(@user) %>
 
 <%= validate_degrees(@user) %>
-
-<div class="arrow-left">
-  <% unless @user.id == 1 %>
-    <%= link_to user_path(@user.id - 1) do %>
-      <i class="glyphicon glyphicon-chevron-left"></i>
-    <% end %>  
-  <% end %>
-</div>
-
-<div class="arrow-right">
-  <% unless @user.id == User.all.count %>
-    <%= link_to user_path(@user.id + 1) do%>
-      <i class="glyphicon glyphicon-chevron-right" size="150x150"></i>
-    <% end %>
-  <% end %>
-</div>
