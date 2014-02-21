@@ -23,6 +23,7 @@
 
   <% if current_user %>
     Signed in as <%= current_user.first_name %>!
+    <%= link_to "My profile", user_path(current_user.id) %>
     <%= link_to "Sign out", signout_path %>
   <% else %>
     <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg" %>
