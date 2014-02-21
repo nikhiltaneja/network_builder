@@ -1,0 +1,17 @@
+<div class="education-info">
+  <h3>Education</h3>
+  <ul>
+    <% user.degrees.each do |degree| %>
+      <li><%= degree.school.name %></li>
+
+      <% if degree.title %>
+
+        <ul>
+          <li><%= degree.title %> <%= degree.specialty.name %></li>
+        </ul>
+
+      <% end %>
+
+    <% end %>
+  </ul>
+</div>

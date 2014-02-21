@@ -9,50 +9,11 @@
   <h4><%= link_to "LinkedIn Profile", @user.public_profile, target: 'blank' %></h4>
 </div>
 
-<% if @user.summary && !@user.summary.empty? %>
+<%= validate_summary(@user) %>
 
-  <div class="summary">
-    <h3>Summary</h3>
-    <p><%= @user.summary %></p>
-  </div>
+<%= validate_jobs(@user) %>
 
-<% end %>
-
-
-<% if @user.jobs %>
-
-  <div class="work-experience">
-    <h3>Work Experience</h3>
-    <ul>
-      <% @user.jobs.each do |job| %>
-        <li><%= job.company.name %>, <%= job.position.name %> </li>
-      <% end %>
-    </ul>
-  </div>
-
-<% end %>
-
-<% if @user.degrees %>
-
-  <div class="education-info">
-    <h3>Education</h3>
-    <ul>
-      <% @user.degrees.each do |degree| %>
-        <li><%= degree.school.name %></li>
-
-        <% if degree.title %>
-
-          <ul>
-            <li><%= degree.title %> <%= degree.specialty.name %></li>
-          </ul>
-
-        <% end %>
-
-      <% end %>
-    </ul>
-  </div>
-
-<% end %>
+<%= validate_degrees(@user) %>
 
 <div class="arrow-left">
   <% unless @user.id == 1 %>
