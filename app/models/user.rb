@@ -24,9 +24,19 @@ class User < ActiveRecord::Base
     educations = auth["extra"]["raw_info"]["educations"]["values"]
     current_jobs = auth["extra"]["raw_info"]["threeCurrentPositions"]["values"]
     past_jobs = auth["extra"]["raw_info"]["threePastPositions"]["values"]
-    add_degrees(educations, user.id)
-    add_current_jobs(current_jobs, user.id)
-    add_past_jobs(past_jobs, user.id)
+    
+    if educations
+      add_degrees(educations, user.id)
+    end
+
+    if current_jobs
+      add_current_jobs(current_jobs, user.id)
+    end
+
+    if past_jobs
+      add_past_jobs(past_jobs, user.id)
+    end
+
     user
   end
 

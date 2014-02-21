@@ -6,10 +6,10 @@
   <h3><%= @user.first_name %> <%= @user.last_name %></h3>
   <h4><%= @user.headline %></h4>
   <h4><%= @user.location %></h4>
-  <h4><%= link_to "LinkedIn Profile", @user.public_profile %></h4>
+  <h4><%= link_to "LinkedIn Profile", @user.public_profile, target: 'blank' %></h4>
 </div>
 
-<% if @user.summary %>
+<% if @user.summary && !@user.summary.empty? %>
 
   <div class="summary">
     <h3>Summary</h3>
@@ -18,30 +18,41 @@
 
 <% end %>
 
-<div>
-  <h3>Discussion Topics</h3>
-</div>
 
-<div class="work-experience">
-  <h3>Work Experience</h3>
-  <ul>
-    <% @user.jobs.each do |job| %>
-      <li><%= job.company.name %>, <%= job.position.name %> </li>
-    <% end %>
-  </ul>
-</div>
+<% if @user.jobs %>
 
-<div class="education-info">
-  <h3>Education</h3>
-  <ul>
-    <% @user.degrees.each do |degree| %>
-      <li><%= degree.school.name %></li>
-      <ul>
-        <li><%= degree.title %> <%= degree.specialty.name %></li>
-      </ul>
-    <% end %>
-  </ul>
-</div>
+  <div class="work-experience">
+    <h3>Work Experience</h3>
+    <ul>
+      <% @user.jobs.each do |job| %>
+        <li><%= job.company.name %>, <%= job.position.name %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+<% end %>
+
+<% if @user.degrees %>
+
+  <div class="education-info">
+    <h3>Education</h3>
+    <ul>
+      <% @user.degrees.each do |degree| %>
+        <li><%= degree.school.name %></li>
+
+        <% if degree.title %>
+
+          <ul>
+            <li><%= degree.title %> <%= degree.specialty.name %></li>
+          </ul>
+
+        <% end %>
+
+      <% end %>
+    </ul>
+  </div>
+
+<% end %>
 
 <div class="arrow-left">
   <% unless @user.id == 1 %>
