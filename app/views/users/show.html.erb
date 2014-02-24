@@ -1,34 +1,14 @@
 <div class="row">
-  <div class="col-xs-1">
-    <div class="arrow-left">
-      <% unless @user.id == 1 %>
-        <%= link_to user_path(@user.id - 1) do %>
-          <i class="glyphicon glyphicon-chevron-left"></i>
-        <% end %>  
-      <% end %>
-    </div>
-  </div>
-
-  <div class="profile-picture col-xs-2">
+  <div class="profile-picture col-xs-3">
     <%= image_tag @user.image, size: "150x150" %>
   </div>
 
-  <div class="col-xs-1">
-    <div class="arrow-right">
-      <% unless @user.id == User.all.count %>
-        <%= link_to user_path(@user.id + 1) do%>
-          <i class="glyphicon glyphicon-chevron-right" size="150x150"></i>
-        <% end %>
-      <% end %>
-    </div>
+  <div class="main-info col-xs-offset-3">
+    <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+    <h4><%= @user.headline %></h4>
+    <h4><%= @user.location %></h4>
+    <h4><%= link_to "LinkedIn Profile", @user.public_profile, target: 'blank' %></h4>
   </div>
-</div>
-
-<div class="main-info">
-  <h3><%= @user.first_name %> <%= @user.last_name %></h3>
-  <h4><%= @user.headline %></h4>
-  <h4><%= @user.location %></h4>
-  <h4><%= link_to "LinkedIn Profile", @user.public_profile, target: 'blank' %></h4>
 </div>
 
 <%= validate_summary(@user) %>
@@ -38,6 +18,32 @@
 <%= validate_degrees(@user) %>
 
 <div class="row">
-  <%= button_to "Yes", root_path, class: "btn btn-success btn-lg col-xs-1" %>
-  <%= button_to "No", root_path, class: "btn btn-danger btn-lg col-xs-1" %>
+  <div class="main-info col-xs-3">
+    <%= button_to "Yes", root_path, class: "btn btn-success btn-lg" %>
+  </div>
+  <div class="main-info col-xs-offset-1">
+    <%= button_to "No", root_path, class: "btn btn-danger btn-lg" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    <div class="arrow-left">
+      <% unless @user.id == 1 %>
+        <%= link_to user_path(@user.id - 1) do %>
+          <i class="glyphicon glyphicon-chevron-left"></i>
+        <% end %>  
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-xs-offset-1">
+    <div class="arrow-right">
+      <% unless @user.id == User.all.count %>
+        <%= link_to user_path(@user.id + 1) do%>
+          <i class="glyphicon glyphicon-chevron-right"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
