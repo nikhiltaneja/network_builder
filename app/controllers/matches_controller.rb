@@ -14,6 +14,9 @@ class MatchesController < ApplicationController
       responder_status: match_params[:responder_status],
       status: match_params[:status]
       )
+    if match.status == "accepted"
+      UserMailer.match_confirmation(match.requester_id, match.responder_id).deliver
+    end
     redirect_to root_path
   end
 
