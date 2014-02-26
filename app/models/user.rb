@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :degrees
   has_many :jobs
+  has_many :requests, class_name: "Match", foreign_key: :requester_id
+  has_many :responses, class_name: "Match", foreign_key: :responder_id
 
   def self.from_omniauth(auth)
     where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
