@@ -17,15 +17,19 @@
 
 <%= validate_degrees(@user) %>
 
-<% if @match %>
+<% if @match && @match.status == 'pending' %>
   <div class="row">
-    <%= button_to 'Accept', match_path(id: @match.id, responder_status: :accepted, status: :accepted), method: 'put', class: "btn btn-success btn-lg" %>
-    <%= button_to 'Reject', match_path(id: @match.id, responder_status: :rejected, status: :rejected), method: 'put', class: "btn btn-danger btn-lg" %>
+    <%= button_to 'Accept', match_path(id: @match.id, responder_status: 'accepted', status: 'accepted'), method: 'put', class: "btn btn-success btn-lg" %>
+    <%= button_to 'Reject', match_path(id: @match.id, responder_status: 'rejected', status: 'rejected'), method: 'put', class: "btn btn-danger btn-lg" %>
   </div>
+<% elsif @match && @match.status == 'accepted' %>
+  <h3 class="text-success">Match complete!</h3>
+<% elsif @match && @match.status == 'rejected' %>
+  <h3 class="text-info">Match pending</h3>
 <% else %>
   <div class="row">
-    <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: :accepted), method: 'post', class: "btn btn-success btn-lg" %>
-    <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: :rejected), method: 'post', class: "btn btn-danger btn-lg" %>
+    <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: 'accepted'), method: 'post', class: "btn btn-success btn-lg" %>
+    <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: 'rejected'), method: 'post', class: "btn btn-danger btn-lg" %>
   </div>
 <% end %>
 

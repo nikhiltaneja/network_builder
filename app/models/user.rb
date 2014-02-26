@@ -65,4 +65,8 @@ class User < ActiveRecord::Base
       Job.create(user_id: user_id, company_id: company.id, position_id: position.id)
     end
   end
+
+  def self.other_users(current_user)
+    where.not(id: current_user.id)
+  end
 end
