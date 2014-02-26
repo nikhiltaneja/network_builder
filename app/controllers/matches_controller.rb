@@ -20,6 +20,18 @@ class MatchesController < ApplicationController
     redirect_to root_path
   end
 
+  def require_responses
+    @responses = current_user.responses.where(status: 'pending')
+  end
+
+  def completed
+    @matches = Match.where(status: 'accepted').includes(:requester, :responder)
+  end
+
+  def outstanding_requests
+    @requests = current_user.requests.where(status: 'pending')
+  end
+
   private
 
   def match_params

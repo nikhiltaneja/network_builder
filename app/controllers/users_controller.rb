@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     if current_user
-      @users = User.other_users(current_user)
+      @users = User.potential_matches(current_user)
     end
   end
 

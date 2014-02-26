@@ -29,6 +29,14 @@
           Signed in as <%= current_user.first_name %>!
           <%= link_to "My profile", user_path(current_user.id) %>
           <%= link_to "Sign out", signout_path %>
+
+          <div>
+            <%= link_to 'Potential Matches', users_path %>
+            <%= link_to 'Require Responses', require_responses_matches_path %>
+            <%= link_to 'Completed Matches', completed_matches_path %>
+            <%= link_to 'Outstanding Requests', outstanding_requests_matches_path %>
+          </div>
+
         <% else %>
           <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg" %>
         <% end %>

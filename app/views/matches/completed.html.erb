@@ -1,0 +1,11 @@
+<% @matches.each do |match|%>
+<ul>
+  <% if match.requester.id == current_user.id %>
+    <li><%= link_to (match.responder.first_name + ' ' + match.responder.last_name), user_path(match.responder) %></li>
+  <% end %>
+  
+  <% if match.responder.id == current_user.id %>
+    <li><%= link_to (match.requester.first_name + ' ' + match.requester.last_name), user_path(match.requester) %></li>
+  <% end %>
+</ul>
+<% end %>

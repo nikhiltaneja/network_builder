@@ -1,0 +1,5 @@
+<% @responses.each do |response|%>
+<ul>
+  <li><%= link_to (response.requester.first_name + ' ' + response.requester.last_name), user_path(response.requester) %></li>
+</ul>
+<% end %>

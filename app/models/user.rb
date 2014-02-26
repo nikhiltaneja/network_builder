@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.other_users(current_user)
-    where.not(id: current_user.id)
+  def self.potential_matches(current_user)
+    where.not(id: [ current_user.id ] + current_user.requests.map(&:responder_id) + current_user.responses.map(&:requester_id))
   end
 end
