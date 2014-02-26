@@ -17,10 +17,17 @@
 
 <%= validate_degrees(@user) %>
 
-<div class="row">
-  <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: :accepted), method: 'post', class: "btn btn-success btn-lg" %>
-  <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: :rejected), method: 'post', class: "btn btn-danger btn-lg" %>
-</div>
+<% if @match %>
+  <div class="row">
+    <%= button_to 'Accept', match_path(id: @match.id, responder_status: :accepted, status: :accepted), method: 'put', class: "btn btn-success btn-lg" %>
+    <%= button_to 'Reject', match_path(id: @match.id, responder_status: :rejected, status: :rejected), method: 'put', class: "btn btn-danger btn-lg" %>
+  </div>
+<% else %>
+  <div class="row">
+    <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: :accepted), method: 'post', class: "btn btn-success btn-lg" %>
+    <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: :rejected), method: 'post', class: "btn btn-danger btn-lg" %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-xs-3">
