@@ -18,13 +18,8 @@
 <%= validate_degrees(@user) %>
 
 <div class="row">
-  <div class="main-info col-xs-3">
-    <%= form_for Match.new do |f| %>
-      <%= f.hidden_field :responder_id, value: @user.id %>
-      <%= f.submit "Yes", name: "match[status]", class: "btn btn-success btn-lg" %>
-      <%= f.submit "No", name: "match[status]", class: "btn btn-danger btn-lg" %>
-    <% end %>
-  </div>
+  <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: :accepted), method: 'post', class: "btn btn-success btn-lg" %>
+  <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: :rejected), method: 'post', class: "btn btn-danger btn-lg" %>
 </div>
 
 <div class="row">

@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   def create
     Match.create(requester_id: current_user.id, responder_id: match_params[:responder_id], 
-      requester_status: match_params[:status])
+      requester_status: match_params[:requester_status])
     redirect_to root_path
   end
 
@@ -11,6 +11,6 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:responder_id, :status)
+    params.permit(:responder_id, :requester_status)
   end
 end
