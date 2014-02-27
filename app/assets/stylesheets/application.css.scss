@@ -20,3 +20,15 @@
   display: block;
   margin: 0 auto;
 }
+
+body.home {
+  /*background: image-url('coffee.jpg');*/
+}
+
+body.home { 
+  background: image-url('coffee.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

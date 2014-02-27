@@ -17,7 +17,11 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<% if current_user %>
+  <body>
+<% else %>
+  <body class="home">
+<% end %>
   <div class="container">
     <div class="row">
       <div class="col-xs-3">
@@ -38,6 +42,8 @@
       <% else %>
     </div>
     <div class="row" id="sign-in-button-container">
+      <center><h1>Build your network.</h1></center>
+      <center><h2>Meet someone new over a cup of coffee.</h2></center>
       <div id="sign-in-button">
         <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg btn-block" %>
       </div>

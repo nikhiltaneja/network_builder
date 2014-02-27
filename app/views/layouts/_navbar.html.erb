@@ -1,10 +1,10 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li><%= link_to 'Potential Matches', users_path %></li>
+      <li><%= link_to 'Outstanding Requests', outstanding_requests_matches_path %></li>
       <li><%= link_to 'Require Responses', require_responses_matches_path %></li>
       <li><%= link_to 'Completed Matches', completed_matches_path %></li>
-      <li><%= link_to 'Outstanding Requests', outstanding_requests_matches_path %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li> <%= link_to "My Profile", user_path(current_user.id) %></li>
