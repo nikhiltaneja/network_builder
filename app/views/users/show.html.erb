@@ -19,8 +19,8 @@
 
 <% if @match && @match.status == 'pending' && @match.requester_id != current_user.id %>
   <div class="row">
-    <%= button_to 'Accept', match_path(id: @match.id, responder_status: 'accepted', status: 'accepted'), method: 'put', class: "btn btn-success btn-lg" %>
-    <%= button_to 'Reject', match_path(id: @match.id, responder_status: 'rejected', status: 'rejected'), method: 'put', class: "btn btn-danger btn-lg" %>
+    <%= button_to 'Accept', match_path(id: @match.id, responder_status: 'accepted', status: 'accepted'), method: 'put', class: "btn btn-success btn-lg col-xs-1" %>
+    <%= button_to 'Reject', match_path(id: @match.id, responder_status: 'rejected', status: 'rejected'), method: 'put', class: "btn btn-danger btn-lg col-xs-1" %>
   </div>
 <% elsif @match && @match.status == 'pending' && @match.requester_id == current_user.id %>
   <h3 class="text-info">Awaiting response!</h3>
