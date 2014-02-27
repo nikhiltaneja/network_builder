@@ -18,30 +18,34 @@
 </head>
 
 <body>
-
   <div class="container">
-
     <div class="row">
-      <div class="col-xs-3"><%= image_tag 'networkbuilder_logo.png', size: '180x65' %></div>
+      <div class="col-xs-3">
+        <%= image_tag 'networkbuilder_logo.png', size: '180x65' %>
+      </div>
 
-      <div class="col-xs-9">
-        <% if current_user %>
+      <% if current_user %>
+        <div class="col-xs-2 col-xs-offset-7">
           Signed in as <%= current_user.first_name %>!
-          <%= link_to "My profile", user_path(current_user.id) %>
-          <%= link_to "Sign out", signout_path %>
-
-          <div>
-            <%= link_to 'Potential Matches', users_path %>
-            <%= link_to 'Require Responses', require_responses_matches_path %>
-            <%= link_to 'Completed Matches', completed_matches_path %>
-            <%= link_to 'Outstanding Requests', outstanding_requests_matches_path %>
-          </div>
-
-        <% else %>
-          <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg" %>
-        <% end %>
+        </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "layouts/navbar" %>
       </div>
     </div>
+
+      <% else %>
+        <div id="sign-in-button">
+          <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% flash.each do |type, message| %>
+      <div class="flash flash-#{type}">
+        <p><%= message %></p>
+      </div>
+    <% end %>
 
     <%= yield %>
 

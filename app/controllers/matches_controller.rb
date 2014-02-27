@@ -5,6 +5,7 @@ class MatchesController < ApplicationController
       responder_id: match_params[:responder_id], 
       requester_status: match_params[:requester_status]
       )
+    flash[:success] = "Request sent!"
     redirect_to root_path
   end
 

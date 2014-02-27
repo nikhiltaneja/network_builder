@@ -3,7 +3,7 @@
     <%= image_tag @user.image, size: "150x150" %>
   </div>
 
-  <div class="main-info col-xs-offset-3">
+  <div class="col-xs-offset-3">
     <h3><%= @user.first_name %> <%= @user.last_name %></h3>
     <h4><%= @user.headline %></h4>
     <h4><%= @user.location %></h4>
@@ -17,19 +17,21 @@
 
 <%= validate_degrees(@user) %>
 
-<% if @match && @match.status == 'pending' %>
+<% if @match && @match.status == 'pending' && @match.requester_id != current_user.id %>
   <div class="row">
     <%= button_to 'Accept', match_path(id: @match.id, responder_status: 'accepted', status: 'accepted'), method: 'put', class: "btn btn-success btn-lg" %>
     <%= button_to 'Reject', match_path(id: @match.id, responder_status: 'rejected', status: 'rejected'), method: 'put', class: "btn btn-danger btn-lg" %>
   </div>
+<% elsif @match && @match.status == 'pending' && @match.requester_id == current_user.id %>
+  <h3>Awaiting response!</h3>
 <% elsif @match && @match.status == 'accepted' %>
   <h3 class="text-success">Match complete!</h3>
 <% elsif @match && @match.status == 'rejected' %>
   <h3 class="text-info">Match pending</h3>
 <% else %>
   <div class="row">
-    <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: 'accepted'), method: 'post', class: "btn btn-success btn-lg" %>
-    <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: 'rejected'), method: 'post', class: "btn btn-danger btn-lg" %>
+    <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: 'accepted'), method: 'post', class: "btn btn-success btn-lg col-xs-1" %>
+    <%= button_to 'No', matches_path(responder_id: @user.id, requester_status: 'rejected'), method: 'post', class: "btn btn-danger btn-lg col-xs-offset-1 col-xs-1" %>
   </div>
 <% end %>
 
