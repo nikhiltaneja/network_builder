@@ -11,9 +11,12 @@
  *= require_self
  *= require_tree .
  */
+#sign-in-button-container {
+  margin-top: 20%;
+}
 
- #sign-in-button {
-  vertical-align: center;
-  margin: auto;
-  width: 400px;
- }
+#sign-in-button {
+  width: 25%;
+  display: block;
+  margin: 0 auto;
+}

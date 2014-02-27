@@ -23,11 +23,13 @@
     <%= button_to 'Reject', match_path(id: @match.id, responder_status: 'rejected', status: 'rejected'), method: 'put', class: "btn btn-danger btn-lg" %>
   </div>
 <% elsif @match && @match.status == 'pending' && @match.requester_id == current_user.id %>
-  <h3>Awaiting response!</h3>
+  <h3 class="text-info">Awaiting response!</h3>
 <% elsif @match && @match.status == 'accepted' %>
   <h3 class="text-success">Match complete!</h3>
 <% elsif @match && @match.status == 'rejected' %>
-  <h3 class="text-info">Match pending</h3>
+  <h3 class="text-info">Awaiting response!</h3>
+<% elsif @user.id == current_user.id %>
+  <div></div>
 <% else %>
   <div class="row">
     <%= button_to 'Yes', matches_path(responder_id: @user.id, requester_status: 'accepted'), method: 'post', class: "btn btn-success btn-lg col-xs-1" %>

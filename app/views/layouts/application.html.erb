@@ -28,18 +28,21 @@
         <div class="col-xs-2 col-xs-offset-7">
           Signed in as <%= current_user.first_name %>!
         </div>
+    </div>
+
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "layouts/navbar" %>
       </div>
     </div>
-
       <% else %>
-        <div id="sign-in-button">
-          <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg btn-block" %>
-        </div>
-      <% end %>
     </div>
+    <div class="row" id="sign-in-button-container">
+      <div id="sign-in-button">
+        <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg btn-block" %>
+      </div>
+    </div>
+      <% end %>
 
     <% flash.each do |type, message| %>
       <div class="flash flash-#{type}">
