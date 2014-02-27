@@ -19,15 +19,14 @@
 
 <% if current_user %>
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 logo">
+          <%= image_tag 'networkbuilder_logo.png', size: '250x40' %>
+        </div>
 <% else %>
   <body class="home">
 <% end %>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-3">
-        <%= image_tag 'networkbuilder_logo.png', size: '180x65' %>
-      </div>
-
       <% if current_user %>
         <div class="col-xs-2 col-xs-offset-7">
           Signed in as <%= current_user.first_name %>!
@@ -42,8 +41,8 @@
       <% else %>
     </div>
     <div class="row" id="sign-in-button-container">
-      <center><h1>Build your network.</h1></center>
-      <center><h2>Meet someone new over a cup of coffee.</h2></center>
+      <center><%= image_tag 'networkbuilder_logo.png', size: '520x65' %></center>
+      <center><h2><strong>Meet someone new over a cup of coffee</strong></h2></center>
       <div id="sign-in-button">
         <%= button_to "Sign in with LinkedIn", "/auth/linkedin", method: :get, class:"btn btn-primary btn-lg btn-block" %>
       </div>
